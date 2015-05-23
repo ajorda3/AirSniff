@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="si.fri.bmo.airsnif" >
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +34,22 @@
         <activity
             android:name=".GSMSSniffActivity"
             android:label="@string/title_activity_gsmssniff" >
+        </activity>
+        <activity
+            android:name=".BTSniffActivity"
+            android:label="@string/title_activity_btsniff" >
+        </activity>
+        <activity
+            android:name=".GPRSSniffActivity"
+            android:label="@string/title_activity_gprssniff" >
+        </activity>
+        <activity
+            android:name=".LTESniffActivity"
+            android:label="@string/title_activity_ltesniff" >
+        </activity>
+        <activity
+            android:name=".GPSSnifActivity"
+            android:label="@string/title_activity_gpssnif" >
         </activity>
     </application>
 

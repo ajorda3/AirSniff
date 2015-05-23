@@ -26,13 +26,23 @@ public class WifiSniffActivity extends AppCompatActivity {
     ListView list;
     String wifis[];
 
+    boolean wasBeforeEnabled;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_sniff);
 
         list = (ListView) findViewById(R.id.listView1);
+        String[] msg = {"Scanning for data"};
+        list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, msg));
         mainWifiObj = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        // turn on if not yet enabled
+        wasBeforeEnabled = mainWifiObj.isWifiEnabled();
+        if(!wasBeforeEnabled)
+            mainWifiObj.setWifiEnabled(true);
+
         wifiReciever = new WifiScanReceiver();
         mainWifiObj.startScan();
 
@@ -54,6 +64,10 @@ public class WifiSniffActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            mainWifiObj.startScan();
+            String[] msg = {"Scanning for data"};
+            list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                    android.R.layout.simple_list_item_1, msg));
             return true;
         }
 
@@ -63,6 +77,8 @@ public class WifiSniffActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         unregisterReceiver(wifiReciever);
+        if(!wasBeforeEnabled)
+            mainWifiObj.setWifiEnabled(false);
         super.onPause();
     }
 
@@ -70,6 +86,8 @@ public class WifiSniffActivity extends AppCompatActivity {
     protected void onResume() {
         registerReceiver(wifiReciever, new IntentFilter(
                 WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        if(!wasBeforeEnabled)
+            mainWifiObj.setWifiEnabled(true);
         super.onResume();
     }
 
@@ -77,23 +95,29 @@ public class WifiSniffActivity extends AppCompatActivity {
         @SuppressLint("UseValueOf")
         public void onReceive(Context c, Intent intent) {
             List<ScanResult> wifiScanList = mainWifiObj.getScanResults();
-            wifis = new String[wifiScanList.size()];
+            if(wifiScanList.size() > 0) {
+                wifis = new String[wifiScanList.size()];
 
-            for (int i = 0; i < wifiScanList.size(); i++) {
-                Log.i("SSID", wifiScanList.get(i).SSID);
-                Log.i("BSSID", wifiScanList.get(i).BSSID);
-                Log.i("CAPABILITIES", wifiScanList.get(i).capabilities);
-                Log.i("LEVEL", String.valueOf(wifiScanList.get(i).level));
-                Log.i("FREQUENCY", String.valueOf(wifiScanList.get(i).frequency));
+                for (int i = 0; i < wifiScanList.size(); i++) {
+                    Log.i("SSID", wifiScanList.get(i).SSID);
+                    Log.i("BSSID", wifiScanList.get(i).BSSID);
+                    Log.i("CAPABILITIES", wifiScanList.get(i).capabilities);
+                    Log.i("LEVEL", String.valueOf(wifiScanList.get(i).level));
+                    Log.i("FREQUENCY", String.valueOf(wifiScanList.get(i).frequency));
 
-                StringBuffer sb = new StringBuffer();
-                sb.append("SSID: ").append(wifiScanList.get(i).SSID).append("\n");
-                sb.append("BSSID: ").append(wifiScanList.get(i).BSSID).append("\n");
-                sb.append("CAPABILITIES: ").append(wifiScanList.get(i).capabilities).append("\n");
-                sb.append("LEVEL: ").append(String.valueOf(wifiScanList.get(i).level)).append("\n");
-                sb.append("FREQUENCY: ").append(String.valueOf(wifiScanList.get(i).frequency)).append("\n");
+                    StringBuffer sb = new StringBuffer();
+                    sb.append("SSID: ").append(wifiScanList.get(i).SSID).append("\n");
+                    sb.append("BSSID: ").append(wifiScanList.get(i).BSSID).append("\n");
+                    sb.append("CAPABILITIES: ").append(wifiScanList.get(i).capabilities).append("\n");
+                    sb.append("LEVEL: ").append(String.valueOf(wifiScanList.get(i).level)).append("\n");
+                    sb.append("FREQUENCY: ").append(String.valueOf(wifiScanList.get(i).frequency)).append("\n");
 
-                wifis[i] = (sb.toString());
+                    wifis[i] = (sb.toString());
+                }
+            }
+            else{
+                wifis = new String[1];
+                wifis[0] = "No WiFi signal was detected!";
             }
 
             list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
