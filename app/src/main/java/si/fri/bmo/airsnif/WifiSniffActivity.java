@@ -102,15 +102,15 @@ public class WifiSniffActivity extends AppCompatActivity {
                     Log.i("SSID", wifiScanList.get(i).SSID);
                     Log.i("BSSID", wifiScanList.get(i).BSSID);
                     Log.i("CAPABILITIES", wifiScanList.get(i).capabilities);
-                    Log.i("LEVEL", String.valueOf(wifiScanList.get(i).level));
+                    Log.i("SIGNAL", String.valueOf(wifiScanList.get(i).level));
                     Log.i("FREQUENCY", String.valueOf(wifiScanList.get(i).frequency));
 
                     StringBuffer sb = new StringBuffer();
                     sb.append("SSID: ").append(wifiScanList.get(i).SSID).append("\n");
                     sb.append("BSSID: ").append(wifiScanList.get(i).BSSID).append("\n");
                     sb.append("CAPABILITIES: ").append(wifiScanList.get(i).capabilities).append("\n");
-                    sb.append("LEVEL: ").append(String.valueOf(wifiScanList.get(i).level)).append("\n");
-                    sb.append("FREQUENCY: ").append(String.valueOf(wifiScanList.get(i).frequency)).append("\n");
+                    sb.append("SIGNAL: ").append(String.valueOf(wifiScanList.get(i).level)).append(" dBm").append("\n");
+                    sb.append("FREQUENCY: ").append(String.valueOf(wifiScanList.get(i).frequency)).append(" MHz").append("\n");
 
                     wifis[i] = (sb.toString());
                 }

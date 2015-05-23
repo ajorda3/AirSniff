@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 
@@ -153,12 +154,14 @@ public class GPSSnifActivity extends AppCompatActivity {
                     satelliteData[i - 1] = sb.toString();
                     i++;
                 }
+                satelliteData = Arrays.copyOf(satelliteData, i-1);
             } else {
                 failure = true;
             }
             if(failure){
-                satelliteData = new String[1];
+                satelliteData = new String[2];
                 satelliteData[0] = "No satellite detected";
+                satelliteData[1] = "(Try to change your position)";
             }
 
             list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
