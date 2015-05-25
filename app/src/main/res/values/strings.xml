@@ -8,6 +8,5 @@
     <string name="title_activity_gsmssniff">Sniff GSM</string>
     <string name="title_activity_btsniff">Sniff Bluetooth</string>
     <string name="title_activity_gprssniff">Sniff GPRS</string>
-    <string name="title_activity_ltesniff">Sniff LTE</string>
     <string name="title_activity_gpssnif">Sniff GPS</string>
 </resources>

@@ -65,16 +65,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void sniffLTE(View view) {
-
-        Button button = (Button) view;
-        button.setText("LTE sniff started");
-
-        Intent intent = new Intent(this, LTESniffActivity.class);
-
-        startActivity(intent);
-    }
-
     public void sniffGPS(View view) {
 
         Button button = (Button) view;

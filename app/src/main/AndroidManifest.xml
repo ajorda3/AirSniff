@@ -44,10 +44,6 @@
             android:label="@string/title_activity_gprssniff" >
         </activity>
         <activity
-            android:name=".LTESniffActivity"
-            android:label="@string/title_activity_ltesniff" >
-        </activity>
-        <activity
             android:name=".GPSSnifActivity"
             android:label="@string/title_activity_gpssnif" >
         </activity>

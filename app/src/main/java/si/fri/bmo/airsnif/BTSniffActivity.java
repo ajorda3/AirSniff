@@ -128,10 +128,16 @@ public class BTSniffActivity extends AppCompatActivity {
                         list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
                                 android.R.layout.simple_list_item_1, deviceArray));
                     }
+                    else if(mBluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action) && deviceArrayList.size() == 0){
+                        String[] msg = {"No Bluetooth device found", "(Try to refresh)"};
+                        list.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
+                                android.R.layout.simple_list_item_1, msg));
+                    }
                 }
             };
             // Register the BroadcastReceiver
             IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
             registerReceiver(mReceiver, filter); // Don't forget to unregister during onDestroy
             refreshBT();
         }
