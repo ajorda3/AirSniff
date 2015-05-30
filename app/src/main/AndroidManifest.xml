@@ -40,10 +40,6 @@
             android:label="@string/title_activity_btsniff" >
         </activity>
         <activity
-            android:name=".GPRSSniffActivity"
-            android:label="@string/title_activity_gprssniff" >
-        </activity>
-        <activity
             android:name=".GPSSnifActivity"
             android:label="@string/title_activity_gpssnif" >
         </activity>

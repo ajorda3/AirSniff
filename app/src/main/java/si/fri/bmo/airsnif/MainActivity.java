@@ -55,16 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void sniffGPRS(View view) {
-
-        Button button = (Button) view;
-        button.setText("GPRS sniff started");
-
-        Intent intent = new Intent(this, GPRSSniffActivity.class);
-
-        startActivity(intent);
-    }
-
     public void sniffGPS(View view) {
 
         Button button = (Button) view;
