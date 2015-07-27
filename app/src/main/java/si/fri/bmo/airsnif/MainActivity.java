@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void onButtonClick(View view) {
+    public void sniffBT(View view) {
         Button button = (Button) view;
-        button.setText("Clicked2");
+        button.setText("Bluetooth sniff started");
 
-        Intent intent = new Intent(this, NewActivity.class);
+        Intent intent = new Intent(this, BTSniffActivity.class);
         startActivity(intent);
 
     }
@@ -46,13 +46,23 @@ public class MainActivity extends AppCompatActivity {
     public void sniffGSMSignal(View view) {
 
         Button button = (Button) view;
-        button.setText("Signal sniff started");
+        button.setText("GSM sniff started");
 
         Intent intent = new Intent(this, GSMSSniffActivity.class);
 
         startActivity(intent);
         //http://developer.xamarin.com/recipes/android/networking/gsm_strength/
 
+    }
+
+    public void sniffGPS(View view) {
+
+        Button button = (Button) view;
+        button.setText("GPS sniff started");
+
+        Intent intent = new Intent(this, GPSSnifActivity.class);
+
+        startActivity(intent);
     }
 
 

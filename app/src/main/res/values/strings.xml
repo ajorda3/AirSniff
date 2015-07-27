@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">AirSnif</string>
+    <string name="app_name">AirSniff</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="hello_world">STILL TO DO!</string>
+    <string name="action_settings">Refresh</string>
     <string name="title_activity_new">NewActivity</string>
-    <string name="title_activity_wifi_sniff">WifiSniffActivity</string>
-    <string name="title_activity_gsmssniff">GSMSSniffActivity</string>
+    <string name="title_activity_wifi_sniff">Sniff WiFi</string>
+    <string name="title_activity_gsmssniff">Sniff GSM</string>
+    <string name="title_activity_btsniff">Sniff Bluetooth</string>
+    <string name="title_activity_gpssnif">Sniff GPS</string>
 </resources>
